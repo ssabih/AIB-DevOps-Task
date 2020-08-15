@@ -102,16 +102,16 @@ echo "##vso[task.setvariable variable=latestversionid]$sigDefImgVersionId"
 <img src="AIB_files/image031.png">
 
 <li>Start with an <b>Empty Job</b>.</li>
-<img src="AIB_files/image031.png">
-
-<li>Name the stage.</li>
 <img src="AIB_files/image033.png">
 
-<li>Click on the Task to edit.</li>
+<li>Name the stage.</li>
 <img src="AIB_files/image035.png">
 
-<li>Add an <b>Azure PowerShell</b> task</li>
+<li>Click on the Task to edit.</li>
 <img src="AIB_files/image037.png">
+
+<li>Add an <b>Azure PowerShell</b> task</li>
+<img src="AIB_files/image039.png">
 
 <li>Modify following script to suit yourself. I want to replicate this to Australia East and I had my SIG, image in West US. You can add more regions if you want to. We will use this script as Inline Script in the next step.</li>
 </ul>
@@ -138,24 +138,24 @@ Update-AzGalleryImageVersion -ResourceGroupName $imageResourceGroup -GalleryName
 ```
 <ul>
 <li>Set the values in the Task and copy the script you modified in the last step and paste it in the inline script. You can rename the task if you want to. </li>
-<img src="AIB_files/image039.png">
+<img src="AIB_files/image041.png">
 
 <li>22.	With that, we are all set. <b>Create release</b>.</li>
-<img src="AIB_files/image041.png">
 <img src="AIB_files/image043.png">
-
-<li>During stage 1 execution you will notice that a resource group will be created in you azure subscription. This resource group will be used by AIB to create an image, AIB also provisions a storage account to keep packer logs and temp VHDs. Once the image is successfully created, it will be distributed to the SIG and removed from the resource group.</li>
 <img src="AIB_files/image045.png">
 
-<li>Towards the end of stage 1, you will notice that the image is being distributed to the SIG. you can find this out by going into the image definition of the SIG.</li>
+<li>During stage 1 execution you will notice that a resource group will be created in you azure subscription. This resource group will be used by AIB to create an image, AIB also provisions a storage account to keep packer logs and temp VHDs. Once the image is successfully created, it will be distributed to the SIG and removed from the resource group.</li>
 <img src="AIB_files/image047.png">
 
-<li>If you click on the image version, you can see the replication status in the update replication section.</li>
+<li>Towards the end of stage 1, you will notice that the image is being distributed to the SIG. you can find this out by going into the image definition of the SIG.</li>
 <img src="AIB_files/image049.png">
 
-<li>After the completion of stage 1, stage 2 will start the replication of image to other regions. In my case its Australia East, you can change it in the script to any Azure region</li>
+<li>If you click on the image version, you can see the replication status in the update replication section.</li>
 <img src="AIB_files/image051.png">
+
+<li>After the completion of stage 1, stage 2 will start the replication of image to other regions. In my case its Australia East, you can change it in the script to any Azure region</li>
 <img src="AIB_files/image053.png">
+<img src="AIB_files/image055.png">
 
 <li>Lastly, you can schedule the Tasks to run on Schedule </li>
 <img src="AIB_files/schedule.png">
