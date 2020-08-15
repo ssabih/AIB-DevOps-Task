@@ -29,11 +29,12 @@ In this example we will perform simple tasks needed to keep a Windows-10 image u
 <li>Create a resource group for AIB. I created mine in West US as its one of the supported regions.</li>
 <li> <a href="https://github.com/danielsollondon/azvmimagebuilder/blob/master/quickquickstarts/0_Creating_a_Custom_Windows_Managed_Image/readme.md#step-1--enable-prereqs-1">Register AIB</a>. You can do it through Cloud Shell.</li>
 <li>Create a <a href="https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-to-manage-ua-identity-portal">User assigned managed identity </a></li>
-<li>Give permissions to “User assigned managed identity” created in step 1. For testing purpose, I gave it contributor to subscription. For details on specific permissions read <a href="https://github.com/danielsollondon/azvmimagebuilder/blob/master/aibPermissions.md#azure-powershell-examples">this post </a></li>
+<li>Give permissions to “User assigned managed identity” created in step 1. For testing purpose, I gave it contributor to subscription. For details on specific permissions read <a href="https://github.com/danielsollondon/azvmimagebuilder/blob/master/aibPermissions.md#azure-powershell-examples">this post. </a></li>
 <li>Create a Shared Image Gallery in the same region as step 1. For me it was West US.</li>
 <li>Place your master image in the Shared Image Gallery.</li>
 </ol>
 
+![Image](AIB_files/image001.png)
 
 ```markdown
 Syntax highlighted code block
