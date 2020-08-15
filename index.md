@@ -61,7 +61,21 @@ In this example we will perform simple tasks needed to keep a Windows-10 image u
 <li>Set the values in the following script, replace all the placeholder values in caps with your values. We will use this script in the next step.</li>
 </ul>
 ```markdown
-code goes here
+$currentAzContext = Get-AzContext
+$imageResourceGroup="ROSOURCE-GROUP"
+$subscriptionID=$currentAzContext.Subscription.Id
+$sigGalleryName= "SIG-GALLERY-NAME"
+$imageDefName ="IMAGE-DEF-NAME"
+Install-Module -Name Az.ManagedServiceIdentity -Confirm:$false -Force
+$idenityObject=$(Get-AzUserAssignedIdentity -ResourceGroupName $imageResourceGroup | Where-Object {$_.Name -Match "AIB-IDENTITY*"})
+$idenityNameResourceId=$idenityObject.Id
+$idenityNamePrincipalId=$idenityObject.PrincipalId
+$idenityName=$idenityObject.Name
+$getAllImageVersions=$(Get-AzGalleryImageVersion -ResourceGroupName $imageResourceGroup  -GalleryName $sigGalleryName -GalleryImageDefinitionName $imageDefName)
+$versionPubList=$($getAllImageVersions | Select-Object -Property Name -ExpandProperty PublishingProfile)
+$sortedVersionList=$($versionPubList | Select-Object Name, PublishedDate | Sort-Object PublishedDate -Descending | Select-Object Name -First 1)
+$sigDefImgVersionId=$(Get-AzGalleryImageVersion -ResourceGroupName $imageResourceGroup  -GalleryName $sigGalleryName -GalleryImageDefinitionName $imageDefName -Name $sortedVersionList.name).Id
+echo "##vso[task.setvariable variable=latestversionid]$sigDefImgVersionId"
 ```
 
 
