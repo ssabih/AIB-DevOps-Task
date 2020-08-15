@@ -38,6 +38,13 @@ In this example we will perform simple tasks needed to keep a Windows-10 image u
 1. Create DevOps project.
 ![Image](AIB_files/image001.png)
 
+2. Give it a name and click create.
+![Image](AIB_files/image002.png)
+
+3. Create a Release Pipeline by clicking “New Pipeline”.
+![Image](AIB_files/image003.png)
+
+4. 
 ```markdown
 Syntax highlighted code block
 
