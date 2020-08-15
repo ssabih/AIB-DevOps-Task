@@ -33,7 +33,7 @@ In this example we will perform simple tasks needed to keep a Windows-10 image u
 <li>Create a Shared Image Gallery in the same region as step 1. For me it was West US.</li>
 <li>Place your master image in the Shared Image Gallery.</li>
 </ol>
-
+[google](www.google.com)
 ![Image](AIB_files/image001.png)
 
 ```markdown
