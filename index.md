@@ -77,6 +77,7 @@ $sortedVersionList=$($versionPubList | Select-Object Name, PublishedDate | Sort-
 $sigDefImgVersionId=$(Get-AzGalleryImageVersion -ResourceGroupName $imageResourceGroup  -GalleryName $sigGalleryName -GalleryImageDefinitionName $imageDefName -Name $sortedVersionList.name).Id
 echo "##vso[task.setvariable variable=latestversionid]$sigDefImgVersionId"
 ```
+<br>
 <ul>
 <li>Set the <b>Display Name, Subscription</b>. Copy the script created in the previous step in the <b>Inline Script</b> section and set the <b>PowerShell version</b>, you can use simply use the <b>latest installed version</b>.</li>
 <img src="AIB_files/image015.png">
@@ -136,6 +137,7 @@ $region2 = @{Name='Australia East';ReplicaCount=1}
 $targetRegions = @($region1,$region2)
 Update-AzGalleryImageVersion -ResourceGroupName $imageResourceGroup -GalleryName $sigGalleryName -GalleryImageDefinitionName $imageDefName -Name $siglatestversionname -TargetRegion $targetRegions -Confirm:$false
 ```
+<br>
 <ul>
 <li>Set the values in the Task and copy the script you modified in the last step and paste it in the inline script. You can rename the task if you want to. </li>
 <img src="AIB_files/image041.png">
