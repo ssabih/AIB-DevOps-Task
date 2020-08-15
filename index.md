@@ -158,7 +158,7 @@ Update-AzGalleryImageVersion -ResourceGroupName $imageResourceGroup -GalleryName
 <img src="AIB_files/image055.png">
 
 <li>Lastly, you can schedule the Tasks to run on Schedule </li>
-<img src="AIB_files/schedule.png">
+<img src="AIB_files/schedule.PNG">
 
 </ul>
 <p>
