@@ -41,12 +41,13 @@ In this example we will perform simple tasks needed to keep a Windows-10 image u
 
 <li>Give it a name and click create.</li>
 <img src="AIB_files/image003.png" width="400" height="400">
+
+
+<li>Create a Release Pipeline by clicking “New Pipeline”.</li>
+<img src="AIB_files/image005.png" width="400" height="400">
+
 </ul>
 
-3. Create a Release Pipeline by clicking “New Pipeline”.
-![Image](AIB_files/image005.png)
-
-4. 
 ```markdown
 Syntax highlighted code block
 
