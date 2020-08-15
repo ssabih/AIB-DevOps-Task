@@ -29,8 +29,8 @@ In this example we will perform simple tasks needed to keep a Windows-10 image u
 <li>Create a resource group for AIB. I created mine in West US as its one of the supported regions.</li>
 <li> <a href="https://github.com/danielsollondon/azvmimagebuilder/blob/master/quickquickstarts/0_Creating_a_Custom_Windows_Managed_Image/readme.md#step-1--enable-prereqs-1">Register AIB</a>. You can do it through Cloud Shell.</li>
 <li>Create a <a href="https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-to-manage-ua-identity-portal">User assigned managed identity </a></li>
-<li>Give permissions to “User assigned managed identity” created in step 1. For testing purpose, I gave it contributor to subscription. For details on specific permissions read <a href="https://github.com/danielsollondon/azvmimagebuilder/blob/master/aibPermissions.md#azure-powershell-examples">this post. </a></li>
-<li>Create a Shared Image Gallery in the same region as step 1. For me it was West US.</li>
+<li>Give permissions to “User assigned managed identity” created in previous step. For testing purpose, I gave it contributor to subscription. For details on specific permissions read <a href="https://github.com/danielsollondon/azvmimagebuilder/blob/master/aibPermissions.md#azure-powershell-examples">this post. </a></li>
+<li>Create a Shared Image Gallery in one of the AIB supported region. For me it was West US.</li>
 <li>Place your master image in the Shared Image Gallery.</li>
 </ol>
 
@@ -79,13 +79,13 @@ echo "##vso[task.setvariable variable=latestversionid]$sigDefImgVersionId"
 ```
 <br>
 <ul>
-<li>Set the <b>Display Name, Subscription</b>. Copy the script created in the previous step in the <b>Inline Script</b> section and set the <b>PowerShell version</b>, you can use simply use the <b>latest installed version</b>.</li>
+<li>Set the <b>Display Name, Subscription</b>. Copy the script created in the previous step in the <b>Inline Script</b> section and set the <b>PowerShell version</b>, you can simply use the <b>latest installed version</b>.</li>
 <img src="AIB_files/image015.png">
 
 <li>In case if you have not noticed, we are making use of a variable called <b>“latestversionid”</b>. Lets initialize the variable in the variables section of the stage. This variable will hold the latest version id of the master image.</li>
 <img src="AIB_files/image017.png">
 
-<li>Back to our Tasks where we will add another task, this time search for image builder. Click Add on the <b>“Azure VM Image Builder Test (Preview)”</b>.If you dont have it installed then install it first</li>
+<li>Back to our Release pipeline stage where we will add another task, this time search for image builder. Click Add on the <b>“Azure VM Image Builder Test (Preview)”</b>.If you dont have it installed then install it first</li>
 <img src="AIB_files/image019.png">
 
 <li>Set the values as appropriate to your deployment. You can find resource id for your managed identity from the properties section of the managed identity. Same is true for Image id of your Shared Image Gallery. You will have to provide a storage account, make sure that the storage account is in the same region as AIB which in my case is West US.</li>
