@@ -15,9 +15,18 @@ This means that the build will run only in these regions. Once the image is read
 Let’s get started.
 </P>
 
-### Markdown
+### Objectives
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+In this example we will perform simple tasks needed to keep a Windows-10 image up to date with windows update.
+
+```markdown
+1. Find the latest Image from the Shared Image Gallery (SIG).
+2. Perform windows update on this image.
+3. Distribute it as a new version of the image in the same SIG.
+4. Replicate it to multiple Azure regions.
+```
+
+
 
 ```markdown
 Syntax highlighted code block
