@@ -43,8 +43,13 @@ In this example we will perform simple tasks needed to keep a Windows-10 image u
 <img src="AIB_files/image003.png" width="400" height="400">
 
 
-<li>Create a Release Pipeline by clicking “New Pipeline”.</li>
+<li>Create a Release Pipeline by clicking <b>“New Pipeline”</b>.</li>
 <img src="AIB_files/image005.png" width="400" height="400">
+
+<li>Under <b>“Select a template”</b>, click on <b>“Empty Job”</b>.</li>
+<img src="AIB_files/image007.png" width="400" height="400">
+
+
 
 </ul>
 
