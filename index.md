@@ -26,6 +26,16 @@ In this example we will perform simple tasks needed to keep a Windows-10 image u
 4. Replicate it to multiple Azure regions.
 ```
 
+### Pre-requisites
+
+```markdown
+1.	Create a resource group for AIB. I created mine in West US as its one of the supported regions.
+2.	Register AIB. You can do it through Cloud Shell.
+3.	Create a “User assigned managed identity.”
+4.	Give permissions to “User assigned managed identity” created in step 1. For testing purpose, I gave it contributor to subscription. For details on specific permissions read this post.
+5.	Create a Shared Image Gallery in the same region as step 1. For me it was West US.
+6.	Place your master image in the Shared Image Gallery.
+```
 
 
 ```markdown
