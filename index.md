@@ -164,7 +164,7 @@ Update-AzGalleryImageVersion -ResourceGroupName $imageResourceGroup -GalleryName
 
 </ul>
 <p>
-In case if your DevOps Task is taking longer than 60 mins then I will recommend using the self-hosted agent. Even if your DevOps task fails, you will observe that the actual build goes on and completes for that stage. 
+In case if a stage is taking longer than 60 mins then I will recommend using the self-hosted agent. Even if your DevOps task fails, you will observe that the actual build goes on and completes for that stage.
 </p>
 There is a lot more, you can do with AIB DevOps Task if you have dynamic customizations that you want to execute each time with the build cycle. We are not using any other customization except for windows update but you can add your customization as an artifact which could be as simple as a PowerShell in a code repository for example.
 <p>
