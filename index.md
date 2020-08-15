@@ -12,8 +12,8 @@ At the time of writing this Azure image builder is in preview and available in t
 <li>West Europe</li>
 </ul>
 This means that the build will run only in these regions. Once the image is ready, it can be replicated to other regions through SIG. In my case it will be Australia East. You can also use AIB to distribute the image to other regions but the operation can take very long time depending upon the location and may cause the DevOps task to fail. I faced this issue, therefore I decided to just use shared image gallery for replication.
-Let’s get started.
 </P>
+<P>Let’s get started.</P>
 
 ### Objectives
 
