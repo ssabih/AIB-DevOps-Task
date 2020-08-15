@@ -77,7 +77,11 @@ $sortedVersionList=$($versionPubList | Select-Object Name, PublishedDate | Sort-
 $sigDefImgVersionId=$(Get-AzGalleryImageVersion -ResourceGroupName $imageResourceGroup  -GalleryName $sigGalleryName -GalleryImageDefinitionName $imageDefName -Name $sortedVersionList.name).Id
 echo "##vso[task.setvariable variable=latestversionid]$sigDefImgVersionId"
 ```
+<ul>
+<li>Set the <b>Display Name, Subscription</b>. Copy the script created in the previous step in the <b>Inline Script</b> section and set the <b>PowerShell version</b>, you can use simply use the <b>latest installed version</b>.</li>
+<img src="AIB_files/image015.png">
 
+</ul>
 
 ```markdown
 Syntax highlighted code block
