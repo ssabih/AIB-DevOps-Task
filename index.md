@@ -1,16 +1,19 @@
+<p> 
 A common customer use case which I come across is “How to keep my WVD master image up to date” especially when it comes to windows update.
 Azure Image Builder DevOps Task simplifies that by providing you with DevOps Task that can run on schedule and keep your master image up to date. You can surely do a lot of things with Azure image builder but in this article, we will focus on how to automate windows update for our WVD master image and then replicate it to multiple regions. 
 At the time of writing this Azure image builder is in preview and available in the following regions. 
-•	East US
-•	East US 2
-•	West Central US
-•	West US
-•	West US 2
-•	North Europe
-•	West Europe 
+<ul>
+<li>East US
+<li>East US 2
+<li>West Central US
+<li>West US
+<li>West US 2
+<li>North Europe
+<li>West Europe 
+</ul>
 This means that the build will run only in these regions. Once the image is ready, it can be replicated to other regions through SIG. In my case it will be Australia East. You can also use AIB to distribute the image to other regions but the operation can take very long time depending upon the location and may cause the DevOps task to fail. I faced this issue, therefore I decided to just use shared image gallery for replication.
 Let’s get started.
-
+</P>
 
 ### Markdown
 
