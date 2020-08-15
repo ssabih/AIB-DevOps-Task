@@ -16,26 +16,23 @@ This means that the build will run only in these regions. Once the image is read
 <P>Let’s get started.</P>
 
 ### Objectives
-
 In this example we will perform simple tasks needed to keep a Windows-10 image up to date with windows update.
-
-```markdown
-1. Find the latest Image from the Shared Image Gallery (SIG).
-2. Perform windows update on this image.
-3. Distribute it as a new version of the image in the same SIG.
-4. Replicate it to multiple Azure regions.
-```
+<ol>
+<li>Find the latest Image from the Shared Image Gallery (SIG).</li>
+<li>Perform windows update on this image.</li>
+<li>Distribute it as a new version of the image in the same SIG.</li>
+<li>Replicate it to multiple Azure regions.</li>
+</ol>
 
 ### Pre-requisites
-
-```markdown
-1.	Create a resource group for AIB. I created mine in West US as its one of the supported regions.
-2.	Register AIB. You can do it through Cloud Shell.
-3.	Create a “User assigned managed identity.”
-4.	Give permissions to “User assigned managed identity” created in step 1. For testing purpose, I gave it contributor to subscription. For details on specific permissions read this post.
-5.	Create a Shared Image Gallery in the same region as step 1. For me it was West US.
-6.	Place your master image in the Shared Image Gallery.
-```
+<ol>
+<li>Create a resource group for AIB. I created mine in West US as its one of the supported regions.</li>
+<li>[Register AIB](https://github.com/danielsollondon/azvmimagebuilder/blob/master/quickquickstarts/0_Creating_a_Custom_Windows_Managed_Image/readme.md#step-1--enable-prereqs-1). You can do it through Cloud Shell.</li>
+<li>Create a [“User assigned managed identity.”](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/how-to-manage-ua-identity-portal)</li>
+<li>Give permissions to “User assigned managed identity” created in step 1. For testing purpose, I gave it contributor to subscription. For details on specific permissions read [this post.](https://github.com/danielsollondon/azvmimagebuilder/blob/master/aibPermissions.md#azure-powershell-examples)</li>
+<li>Create a Shared Image Gallery in the same region as step 1. For me it was West US.</li>
+<li>Place your master image in the Shared Image Gallery.</li>
+</ol>
 
 
 ```markdown
