@@ -36,7 +36,7 @@ In this example we will perform simple tasks needed to keep a Windows-10 image u
 
 ### Building AIB DevOps Task
 1. Create DevOps project.
-<img src=AIB_files/image001.png width=200 height=100 />
+<img src="AIB_files/image001.png" width="200" height="100">
 
 2. Give it a name and click create.
 ![Image](AIB_files/image003.png)
