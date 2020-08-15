@@ -53,10 +53,10 @@ In this example we will perform simple tasks needed to keep a Windows-10 image u
 <img src="AIB_files/image009.png">
 
 <li>Click the task in <b>“Build Image”</b> stage.</li>
-<img src="AIB_files/image0012.png">
+<img src="AIB_files/image011.png">
 
 <li>Add a task of type <b>“Azure PowerShell”</b>.</li>
-<img src="AIB_files/image0014.png">
+<img src="AIB_files/image013.png">
 
 <li>Set the values in the following script, replace all the placeholder values in caps with your values. We will use this script in the next step.</li>
 </ul>
