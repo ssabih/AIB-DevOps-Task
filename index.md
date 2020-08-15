@@ -92,33 +92,79 @@ echo "##vso[task.setvariable variable=latestversionid]$sigDefImgVersionId"
 <img src="AIB_files/image023.png">
 <img src="AIB_files/image025.png">
 
+<li>Time to rename the pipeline and save the work.</li>
+<img src="AIB_files/image027.png">
+
+<li>Click on <b>Releases</b> in the left navigation and then <b>Edit</b>.</li>
+<img src="AIB_files/image029.png">
+
+<li>This is all you need if AIB is available in your local region but if its not which in my case is true, you have to create another stage which will help to distribute the image to the local region. Why another stage? Because I found out that the overall time duration of the stage cannot be more than 60 mins if you are using Microsoft hosted agent. You can use self-hosted agent and do it all in one stage and I will highly recommend that specially for windows update customizer. In this example we are using Microsoft hosted agent so we will create another stage for image distribution.</li>
+<img src="AIB_files/image031.png">
+
+<li>Start with an <b>Empty Job</b>.</li>
+<img src="AIB_files/image031.png">
+
+<li>Name the stage.</li>
+<img src="AIB_files/image033.png">
+
+<li>Click on the Task to edit.</li>
+<img src="AIB_files/image035.png">
+
+<li>Add an <b>Azure PowerShell</b> task</li>
+<img src="AIB_files/image037.png">
+
+<li>Modify following script to suit yourself. I want to replicate this to Australia East and I had my SIG, image in West US. You can add more regions if you want to. We will use this script as Inline Script in the next step.</li>
 </ul>
-
 ```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+$currentAzContext = Get-AzContext
+$imageResourceGroup="RESOURCE-GROUP"
+$subscriptionID=$currentAzContext.Subscription.Id
+$sigGalleryName= "SIG-GALLERY-NAME"
+$imageDefName ="IMAGE-DEF-NAME"
+Install-Module -Name Az.ManagedServiceIdentity -Confirm:$false -Force
+$idenityObject=$(Get-AzUserAssignedIdentity -ResourceGroupName $imageResourceGroup | Where-Object {$_.Name -Match "AIB-IDENTITY*"})
+$idenityNameResourceId=$idenityObject.Id
+$idenityNamePrincipalId=$idenityObject.PrincipalId
+$idenityName=$idenityObject.Name
+$getAllImageVersions=$(Get-AzGalleryImageVersion -ResourceGroupName $imageResourceGroup  -GalleryName $sigGalleryName -GalleryImageDefinitionName $imageDefName)
+$versionPubList=$($getAllImageVersions | Select-Object -Property Name -ExpandProperty PublishingProfile)
+$sortedVersionList=$($versionPubList | Select-Object Name, PublishedDate | Sort-Object PublishedDate -Descending | Select-Object Name -First 1)
+$sigDefImgVersionId=$(Get-AzGalleryImageVersion -ResourceGroupName $imageResourceGroup  -GalleryName $sigGalleryName -GalleryImageDefinitionName $imageDefName -Name $sortedVersionList.name).Id
+$siglatestversionname=$sortedVersionList.name
+$region1 = @{Name='West US';ReplicaCount=1}
+$region2 = @{Name='Australia East';ReplicaCount=1}
+$targetRegions = @($region1,$region2)
+Update-AzGalleryImageVersion -ResourceGroupName $imageResourceGroup -GalleryName $sigGalleryName -GalleryImageDefinitionName $imageDefName -Name $siglatestversionname -TargetRegion $targetRegions -Confirm:$false
 ```
+<ul>
+<li>Set the values in the Task and copy the script you modified in the last step and paste it in the inline script. You can rename the task if you want to. </li>
+<img src="AIB_files/image039.png">
 
+<li>22.	With that, we are all set. <b>Create release</b>.</li>
+<img src="AIB_files/image041.png">
+<img src="AIB_files/image043.png">
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+<li>During stage 1 execution you will notice that a resource group will be created in you azure subscription. This resource group will be used by AIB to create an image, AIB also provisions a storage account to keep packer logs and temp VHDs. Once the image is successfully created, it will be distributed to the SIG and removed from the resource group.</li>
+<img src="AIB_files/image045.png">
 
-### Jekyll Themes
+<li>Towards the end of stage 1, you will notice that the image is being distributed to the SIG. you can find this out by going into the image definition of the SIG.</li>
+<img src="AIB_files/image047.png">
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/ssabih/Pages/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+<li>If you click on the image version, you can see the replication status in the update replication section.</li>
+<img src="AIB_files/image049.png">
 
-### Support or Contact
+<li>After the completion of stage 1, stage 2 will start the replication of image to other regions. In my case its Australia East, you can change it in the script to any Azure region</li>
+<img src="AIB_files/image051.png">
+<img src="AIB_files/image053.png">
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+<li>Lastly, you can schedule the Tasks to run on Schedule </li>
+<img src="AIB_files/schedule.png">
+
+</ul>
+<p>
+In case if your DevOps Task is taking longer than 60 mins then I will recommend using the self-hosted agent. Even if your DevOps task fails, you will observe that the actual build goes on and completes for that stage. 
+</p>
+There is a lot more, you can do with AIB DevOps Task if you have dynamic customizations that you want to execute each time with the build cycle. We are not using any other customization except for windows update but you can add your customization as an artifact which could be as simple as a PowerShell in a code repository for example.
+<p>
+I hope this was useful, happy building.
+</p>
