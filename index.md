@@ -155,16 +155,16 @@ Update-AzGalleryImageVersion -ResourceGroupName $imageResourceGroup -GalleryName
 <li>If you click on the image version, you can see the replication status in the update replication section.</li>
 <img src="AIB_files/image051.png">
 
-<li>After the completion of stage 1, stage 2 will start the replication of image to other regions. In my case its Australia East, you can change it in the script to any Azure region</li>
+<li>After the completion of stage 1, stage 2 will start the replication of image to other regions. In my case its Australia East, you can change it in the script to any supported Azure region</li>
 <img src="AIB_files/image053.png">
 <img src="AIB_files/image055.png">
 
-<li>Lastly, you can schedule the Tasks to run on Schedule </li>
+<li>Lastly, you can set the Tasks to run on Schedule </li>
 <img src="AIB_files/schedule.PNG">
 
 </ul>
 <p>
-In case if a stage is taking longer than 60 mins then I will recommend using the self-hosted agent. Even if your DevOps task fails, you will observe that the actual build goes on and completes for that stage.
+In case if a stage is taking longer than 60 mins then I will recommend using the self-hosted agent, could simply be an Azure VM. Even if your DevOps task fails, you will observe that the actual build goes on and completes for that stage. There are many factors which impact the build time such as VM size used in AIB-DevOps Task, SIG storage type, regions used for distribution etc.
 </p>
 There is a lot more, you can do with AIB DevOps Task if you have dynamic customizations that you want to execute each time with the build cycle. We are not using any other customization except for windows update but you can add your customization as an artifact which could be as simple as a PowerShell in a code repository for example.
 <p>
