@@ -1,6 +1,6 @@
 <p> 
 A common customer use case which I come across is “How to keep my WVD master image up to date” especially when it comes to windows update.
-Azure Image Builder DevOps Task simplifies that by providing you with DevOps Task that can run on schedule and keep your master image up to date. You can surely do a lot of things with Azure image builder but in this article, we will focus on how to automate windows update for our WVD master image and then replicate it to multiple regions. 
+Azure Image Builder DevOps Task simplifies that by providing you with Azure DevOps Task which you can run on schedule and keep your master image up to date. You can surely do a lot of things with Azure image builder but in this article, we will focus on how to automate windows update for our Windows-10 master image and then replicate it to multiple regions. 
 At the time of writing this Azure image builder is in preview and available in the following regions. 
 <ul>
 <li>East US</li>
